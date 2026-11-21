@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Emaan 💗</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; overflow-x: hidden;
+    display: grid; place-items: center; padding: 28px 16px;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #743044;
+    background: radial-gradient(circle at top, #fff8f5, #ffdce6 55%, #f8b9cb);
+  }
+  .sparkle { position: fixed; color: #fff; opacity: .8; animation: float 7s ease-in-out infinite; pointer-events:none; }
+  .s1 { top: 8%; left: 8%; font-size: 25px; }
+  .s2 { top: 18%; right: 9%; font-size: 32px; animation-delay: 1s; }
+  .s3 { bottom: 12%; left: 12%; font-size: 30px; animation-delay: 2s; }
+  .s4 { bottom: 17%; right: 10%; font-size: 24px; animation-delay: 3s; }
+  @keyframes float { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-22px) rotate(12deg); } }
+  .card {
+    opacity: 0; transform: translateY(24px) scale(.96); pointer-events: none;
+    transition: opacity .8s ease, transform .8s ease;
+    width: min(680px, 100%); text-align: center; position: relative;
+    padding: clamp(28px, 6vw, 58px) clamp(20px, 6vw, 56px);
+    border: 2px solid #d9a44d; border-radius: 28px;
+    background: rgba(255,250,248,.92);
+    box-shadow: 0 22px 65px rgba(133,55,78,.2), inset 0 0 0 7px #fff1f2;
+  }
+  .card.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  #welcome { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center;
+    padding: 24px; text-align: center; cursor: pointer;
+    background: radial-gradient(circle at 50% 35%, #fffaf8, #ffdce7 62%, #f4abc1);
+    transition: opacity .7s ease, visibility .7s ease; }
+  #welcome.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+  .welcome-box { max-width: 470px; width: min(100%,470px); padding: 38px 28px;
+    border: 1px solid rgba(217,164,77,.9); border-radius: 34px;
+    background: linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,239,245,.91));
+    box-shadow: 0 25px 75px rgba(133,55,78,.24), inset 0 0 0 7px rgba(255,255,255,.55);
+    position:relative; overflow:hidden; animation: welcome-pop .9s cubic-bezier(.2,.8,.2,1) both; }
+  .welcome-box:before { content:""; position:absolute; inset:12px; border:1px dashed rgba(193,138,56,.48); border-radius:25px; pointer-events:none; }
+  @keyframes welcome-pop { from { opacity:0; transform:translateY(28px) scale(.88); } to { opacity:1; transform:translateY(0) scale(1); } }
+  .archery-scene { height:190px; max-width:340px; margin:12px auto 4px; position:relative; display:flex; align-items:flex-end; justify-content:center; }
+  .archer-bear { position:absolute; left:16px; bottom:4px; font-size:clamp(76px,19vw,104px); z-index:2; filter:drop-shadow(0 7px 5px #d99aaa); transform-origin:50% 100%; }
+  .bow { position:absolute; left:105px; bottom:52px; font-size:42px; z-index:3; transform:rotate(-22deg); }
+  .arrow { position:absolute; left:135px; bottom:88px; font-size:38px; z-index:4; opacity:0; transform:rotate(-8deg); }
+  .heart-target { position:absolute; right:42px; top:0; font-size:56px; z-index:2; filter:drop-shadow(0 5px 7px #e78eaa); }
+  .heart-burst { position:absolute; right:40px; top:46px; font-size:52px; opacity:0; z-index:5; }
+  /* On tap, clear the welcome card away: only the upright bear, bow, arrow and falling heart remain. */
+  #welcome.sequence .welcome-box { width:100%; max-width:none; height:100%; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; overflow:visible; }
+  #welcome.sequence .welcome-box:before,
+  #welcome.sequence .welcome-kicker,
+  #welcome.sequence .gift-wrap,
+  #welcome.sequence .welcome-title,
+  #welcome.sequence .welcome-copy,
+  #welcome.sequence .tap-hint,
+  #welcome.sequence .welcome-box > div[style],
+  #welcome.sequence .confetti { display:none !important; }
+  #welcome.sequence { background:radial-gradient(circle at 50% 42%, #fff9fb, #fbd0df 72%, #f3b0c5); }
+  #welcome.sequence .archery-scene { position:fixed; inset:0; width:100vw; height:100vh; max-width:none; margin:0; }
+  #welcome.sequence .archer-bear { left:calc(50% - 190px); bottom:17%; font-size:clamp(125px,27vw,190px); animation:bear-ready .65s ease-out both; }
+  #welcome.sequence .bow { left:calc(50% - 85px); bottom:calc(17% + 88px); font-size:clamp(48px,9vw,68px); }
+  #welcome.sequence .arrow { left:calc(50% - 42px); bottom:calc(17% + 137px); font-size:clamp(42px,8vw,58px); }
+  #welcome.sequence .heart-target { right:calc(50% - 235px); top:23%; font-size:clamp(62px,12vw,86px); animation:heart-drop 2.2s ease-in .2s both, heart-hit .35s ease-out 2.02s forwards; }
+  #welcome.sequence .heart-burst { right:calc(50% - 240px); top:calc(23% + 70px); font-size:clamp(58px,11vw,78px); animation:heart-burst .7s ease-out 2.05s forwards; }
+  #welcome.sequence .arrow { animation:arrow-shot .72s cubic-bezier(.2,.8,.2,1) 1.35s forwards; }
+  @keyframes bear-ready { from { transform:translateY(18px) scale(.92); } to { transform:translateY(0) scale(1); } }
+  @keyframes heart-drop { 0% { transform:translateY(-18px) rotate(-8deg); } 75% { transform:translateY(70px) rotate(8deg); } 100% { transform:translateY(70px) rotate(0); } }
+  @keyframes arrow-shot { 0% { opacity:1; transform:translate(0,0) rotate(-8deg); } 100% { opacity:1; transform:translate(155px,-36px) rotate(-8deg); } }
+  @keyframes heart-hit { to { opacity:0; transform:translateY(70px) scale(1.7); } }
+  @keyframes heart-burst { 0% { opacity:0; transform:scale(.2); } 35% { opacity:1; transform:scale(1.35); } 100% { opacity:0; transform:scale(1.9) translateY(-18px); } }
+  .gift-wrap { position:relative; width:142px; height:130px; margin:20px auto 12px; display:grid; place-items:center; }
+  .gift { font-size: clamp(82px, 19vw, 112px); display:block; position:relative; z-index:1;
+    animation: bob 2s ease-in-out infinite; filter: drop-shadow(0 10px 10px #d987a4); }
+  .gift-halo { position:absolute; width:128px; height:128px; border-radius:50%; background:#ffd5e3; opacity:.55; animation: halo 2.2s ease-in-out infinite; }
+  @keyframes halo { 0%,100% { transform:scale(.82); opacity:.35; } 50% { transform:scale(1.12); opacity:.7; } }
+  .welcome-kicker { color:#bd8a42; letter-spacing:4px; font:12px Arial,sans-serif; text-transform:uppercase; position:relative; }
+  .welcome-title { text-shadow:0 3px 0 #fff; position:relative; }
+  .welcome-copy { position:relative; }
+  .tap-hint { position:relative; }
+  #welcome.opening .gift { animation: gift-open .85s ease-in forwards; }
+  #welcome.opening .tap-hint { animation: hint-pop .35s ease forwards; }
+  @keyframes gift-open { 0% { transform:scale(1) rotate(0); } 35% { transform:scale(1.18) rotate(-8deg); } 65% { transform:scale(1.3) rotate(8deg); } 100% { transform:scale(.2) rotate(25deg); opacity:0; } }
+  @keyframes hint-pop { to { transform:scale(.9); opacity:.55; } }
+  .confetti { position:absolute; left:50%; top:48%; width:9px; height:14px; border-radius:3px; opacity:0; pointer-events:none; }
+  #welcome.opening .confetti { animation: confetti-pop 1s ease-out forwards; }
+  @keyframes confetti-pop { 0% { opacity:1; transform:translate(0,0) rotate(0); } 100% { opacity:0; transform:translate(var(--dx),var(--dy)) rotate(540deg); } }
+  @keyframes bob { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-12px) rotate(4deg); } }
+  .welcome-title { color: #c52e62; font-size: clamp(32px, 8vw, 46px); font-style: italic; margin: 14px 0 8px; }
+  .welcome-copy { font-size: 17px; line-height: 1.6; }
+  .tap-hint { display: inline-block; margin-top: 18px; padding: 13px 24px; border-radius: 99px;
+    background: linear-gradient(110deg,#c52e62,#e87898); color: white; font: 15px Arial,sans-serif;
+    box-shadow: 0 7px 18px #d987a4; animation: pulse 1.7s infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 7px 26px #e99bb5; transform: scale(1.04); } }
+  .topline { color: #c18a38; letter-spacing: 5px; text-transform: uppercase; font: 12px Arial, sans-serif; }
+  h1 { margin: 18px 0 5px; color: #c52e62; font-size: clamp(42px, 9vw, 72px); line-height: 1.05; font-style: italic; }
+  .name { display: inline-block; margin: 12px 0 22px; padding: 10px 30px;
+    background: linear-gradient(90deg,#f9c2d1,#ffe2e8,#f9c2d1);
+    border-radius: 50px; color: #9b244b; font-size: clamp(34px, 8vw, 54px); font-style: italic;
+  }
+  .decor { font-size: 34px; letter-spacing: 8px; margin: 8px 0 16px; }
+  .bear-scene { display:flex; align-items:flex-end; justify-content:center; gap:clamp(4px,2vw,18px); margin: 8px auto 18px; max-width:520px; }
+  .teddy { font-size:clamp(58px,12vw,88px); line-height:1; filter:drop-shadow(0 5px 4px #d9a0a9); animation: teddy-bob 2.8s ease-in-out infinite; }
+  .teddy.right { animation-delay: .5s; }
+  @keyframes teddy-bob { 0%,100% { transform:translateY(0) rotate(-3deg); } 50% { transform:translateY(-7px) rotate(3deg); } }
+  .name-balloon { position:relative; align-self:center; margin:0 2px 15px; padding:17px 22px 19px; min-width:150px;
+    border-radius:48% 48% 45% 45%; background:linear-gradient(145deg,#ffd5e1,#f28eae); color:#9b244b;
+    box-shadow:inset -7px -8px 14px rgba(177,55,99,.12), 0 7px 15px rgba(173,77,110,.18);
+    font:bold italic clamp(25px,6vw,38px) Georgia,serif; text-shadow:0 1px #fff8;
+  }
+  .name-balloon:after { content:""; position:absolute; left:50%; bottom:-12px; border-width:12px 7px 0; border-style:solid; border-color:#f28eae transparent transparent; transform:translateX(-50%); }
+  .balloon-string { position:absolute; left:50%; bottom:-42px; height:31px; border-left:1px solid #c98b9e; }
+  .cake { font-size: 76px; filter: drop-shadow(0 5px 5px #e8a6b7); margin: 4px 0 12px; }
+  p { font-size: clamp(17px, 3.5vw, 20px); line-height: 1.7; margin: 12px auto; max-width: 510px; }
+  .wish { color: #a12c50; font-style: italic; }
+  button {
+    margin-top: 22px; border: 0; border-radius: 999px; padding: 15px 28px;
+    background: linear-gradient(110deg,#c52e62,#e87898); color: white;
+    font-size: 16px; cursor: pointer; box-shadow: 0 7px 18px #d987a4;
+    transition: transform .2s, box-shadow .2s;
+  }
+  button:hover { transform: translateY(-3px); box-shadow: 0 10px 22px #d987a4; }
+  #musicToggle {
+    position: fixed; top: 14px; right: 14px; z-index: 20; margin: 0;
+    padding: 10px 15px; font: 13px Arial,sans-serif;
+    background: rgba(157,43,83,.92); color: white;
+  }
+  #surprise { display: none; margin: 22px auto 0; padding: 18px; border-radius: 18px; background: #fff0f4; }
+  .signoff { margin-top: 25px; color: #a66c37; font-style: italic; }
+  .heart { position: fixed; bottom: -40px; color: #e65d87; animation: rise 8s linear infinite; opacity: .7; pointer-events:none; }
+  @keyframes rise { to { transform: translateY(-115vh) rotate(35deg); opacity: 0; } }
+</style>
+</head>
+<body>
+<button id="musicToggle" type="button" aria-pressed="true" style="display:none">♫ Music on</button>
+<div id="welcome" role="button" tabindex="0" aria-label="Open Emaan's birthday surprise">
+  <div class="welcome-box">
+    <div class="welcome-kicker">A little magic is waiting</div>
+    <div class="archery-scene" aria-label="A cute teddy bear shoots an arrow at a falling heart">
+      <span class="archer-bear">🧸</span><span class="bow">〰️</span><span class="arrow">➶</span>
+      <span class="heart-target">💗</span><span class="heart-burst">💖✨</span>
+    </div>
+    <div class="gift-wrap"><div class="gift-halo"></div><span class="gift">🎁</span></div>
+    <div class="welcome-title">Hey, Emaan! 💗</div>
+    <p class="welcome-copy">Someone wrapped a little happiness<br>just for you. Are you ready?</p>
+    <span class="tap-hint">✨ Tap anywhere to unwrap ✨</span>
+    <div style="margin-top:20px;font-size:23px;position:relative">🌷 ♡ 🌷</div>
+    <span class="confetti" style="--dx:-145px;--dy:-115px;background:#e8799b"></span>
+    <span class="confetti" style="--dx:140px;--dy:-105px;background:#d9a44d;animation-delay:.04s"></span>
+    <span class="confetti" style="--dx:-165px;--dy:45px;background:#f4a9c0;animation-delay:.08s"></span>
+    <span class="confetti" style="--dx:155px;--dy:55px;background:#c52e62;animation-delay:.12s"></span>
+    <span class="confetti" style="--dx:-75px;--dy:-155px;background:#f0c96e;animation-delay:.16s"></span>
+    <span class="confetti" style="--dx:85px;--dy:-160px;background:#e8799b;animation-delay:.2s"></span>
+  </div>
+</div>
+<div class="sparkle s1">✦</div><div class="sparkle s2">♡</div>
+<div class="sparkle s3">✧</div><div class="sparkle s4">♡</div>
+
+<main class="card" id="birthdayCard">
+  <div class="topline">A little celebration just for you</div>
+  <div class="decor">🎈 ✨ 🎀 ✨ 🎈</div>
+  <h1>Happy Birthday</h1>
+  <div class="name">Emaan</div>
+  <div class="bear-scene" aria-label="Two cute teddy bears holding a pink balloon that says Emaan">
+    <span class="teddy" aria-hidden="true">🧸</span>
+    <div class="name-balloon">Emaan<span class="balloon-string"></span></div>
+    <span class="teddy right" aria-hidden="true">🧸</span>
+  </div>
+  <div class="cake">🎂</div>
+  <p class="wish">
+    May your special day be filled with love, laughter and endless happiness.
+    May every little wish in your heart come true, and may the year ahead
+    bring you beautiful memories, exciting adventures and countless reasons to smile.
+  </p>
+  <p>You deserve all the sweetest things life has to offer. Keep shining and keep being wonderful! 💗</p>
+  <button onclick="document.getElementById('surprise').style.display='block'; this.textContent='A hug for you 💗';">
+    Open your birthday surprise ✨
+  </button>
+  <div id="surprise">
+    <div style="font-size:42px">💐💝🌷</div>
+    <p><strong>Surprise, Emaan!</strong><br>
+    Sending you the biggest birthday hug, a million smiles, and all the love in the world. Have the most magical day! 💕</p>
+  </div>
+  <div class="signoff">With lots of love ♡</div>
+  <div class="decor">🌸 ✨ 💗 ✨ 🌸</div>
+</main>
+<script>
+  const welcome = document.getElementById('welcome');
+  // The bear-and-heart animation begins only after Emaan taps the welcome screen.
+  const birthdayCard = document.getElementById('birthdayCard');
+  // A soft, original synthesized birthday melody. Audio begins after the visitor taps,
+  // because browsers do not allow sound to autoplay before user interaction.
+  const musicButton = document.getElementById('musicToggle');
+  let audioContext = null;
+  let musicTimer = null;
+  let musicOn = true;
+  let melodyIndex = 0;
+  const melody = [
+    [392, .34], [392, .34], [440, .68], [392, .68], [523.25, .68], [493.88, 1.0],
+    [392, .34], [392, .34], [440, .68], [392, .68], [587.33, .68], [523.25, 1.0],
+    [392, .34], [392, .34], [783.99, .68], [659.25, .68], [523.25, .68], [493.88, .68], [440, 1.0],
+    [698.46, .34], [698.46, .34], [659.25, .68], [523.25, .68], [587.33, .68], [523.25, 1.1]
+  ];
+  function playNote(frequency, duration) {
+    if (!audioContext || !musicOn) return;
+    const start = audioContext.currentTime;
+    const oscillator = audioContext.createOscillator();
+    const volume = audioContext.createGain();
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(frequency, start);
+    volume.gain.setValueAtTime(0.0001, start);
+    volume.gain.linearRampToValueAtTime(0.055, start + 0.035);
+    volume.gain.exponentialRampToValueAtTime(0.0001, start + duration * 0.92);
+    oscillator.connect(volume);
+    volume.connect(audioContext.destination);
+    oscillator.start(start);
+    oscillator.stop(start + duration);
+  }
+  function scheduleMelody() {
+    if (!musicOn) return;
+    const [frequency, duration] = melody[melodyIndex];
+    playNote(frequency, duration);
+    melodyIndex = (melodyIndex + 1) % melody.length;
+    musicTimer = setTimeout(scheduleMelody, duration * 1000 + 90);
+  }
+  async function startMusic() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    if (!audioContext) audioContext = new AudioContextClass();
+    if (audioContext.state === 'suspended') await audioContext.resume();
+    if (musicOn && musicTimer === null) scheduleMelody();
+  }
+  function stopMusic() {
+    if (musicTimer !== null) clearTimeout(musicTimer);
+    musicTimer = null;
+    if (audioContext && audioContext.state === 'running') audioContext.suspend();
+  }
+  musicButton.addEventListener('click', async () => {
+    musicOn = !musicOn;
+    musicButton.textContent = musicOn ? '♫ Music on' : '♫ Music off';
+    musicButton.setAttribute('aria-pressed', String(musicOn));
+    if (musicOn) await startMusic(); else stopMusic();
+  });
+  let hasOpened = false;
+  function openCard() {
+    if (hasOpened) return;
+    hasOpened = true;
+    welcome.classList.add('sequence');
+    startMusic();
+    // Let the bear aim, shoot the falling heart, and burst into sparkles first.
+    setTimeout(() => {
+      welcome.classList.add('opening');
+      setTimeout(() => {
+        welcome.classList.add('hide');
+        birthdayCard.classList.add('show');
+        musicButton.style.display = 'block';
+      }, 900);
+    }, 2800);
+  }
+  welcome.addEventListener('click', openCard);
+  welcome.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openCard(); }
+  });
+
+  const symbols = ['♡','♥','✦','✧'];
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('span');
+    el.className = 'heart';
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDelay = Math.random() * 8 + 's';
+    el.style.animationDuration = (6 + Math.random() * 6) + 's';
+    el.style.fontSize = (16 + Math.random() * 22) + 'px';
+    document.body.appendChild(el);
+  }
+</script>
+</body>
+</html>
